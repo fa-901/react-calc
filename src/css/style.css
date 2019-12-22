@@ -3,6 +3,7 @@
         width: 100%;
         border: 1px solid black;
         border-radius: 0.3em;
+        background-color: #704F50;
     }    
 }
 
@@ -11,6 +12,7 @@
         width: 25%;
         border: 1px solid black;
         border-radius: 0.3em;
+        background-color: #704F50;
     }    
 }
 .calc-grid {
@@ -27,6 +29,28 @@
     grid-row: span 2;
 }
 
-.button1{
-
+.inputBtn{
+    display: inline-block;
+    border: 1px solid #704F50;
+    border-radius: 0.3em;
+    padding: 1rem 1rem;
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #F0A979;
+    color: #F9F0AF;
+}
+.inputBtn:focus {
+    outline: 0;
+}
+.inputBtn:hover {
+    background-color: #ed975e;
+}
+.inputBtn:active {
+    transform: scale(0.90);
 }

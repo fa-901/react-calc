@@ -33,7 +33,7 @@ class App extends Component {
 		var btns = btnArr.map((val,i)=>{
 			return(
 				// <div >
-				<button key={`${val}${i}`} className={`${val.class}`}>
+				<button key={`${val}${i}`} className={`${val.class} inputBtn`}>
 						{val.label}
 					</button>
 				// </div>
