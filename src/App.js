@@ -42,7 +42,14 @@ class App extends Component {
 
 		return (
 			<div className='calc-box container p-2'>
-				<textarea rows={2} className={`form-control mb-1`} value={output}/>
+				<div className='outputBox mb-1'>
+					<div className='formula'>
+						f
+					</div>
+					<div className='result'>
+						f
+					</div>
+				</div>
 				<div className='calc-grid'>
 					{btns}
 				</div>
