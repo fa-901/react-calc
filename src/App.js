@@ -21,20 +21,28 @@ class App extends Component {
 	}
 
 	addToStr(val) {
-		var { calcStr } = this.state
+		var { calcStr } = this.state;
 		this.setState({ calcStr: calcStr + val });
 	}
 
 	delete() {
-
+		var { calcStr } = this.state;
+		this.setState({ calcStr: calcStr.slice(0, -1) });
 	}
 
 	clearValue() {
-
+		this.setState({ output: '0' });
 	}
 
 	calculatevalue() {
+		var { calcStr } = this.state;
+		let numArr = calcStr.split(/[-+*\/]/);
+		let operators = calcStr.match(/[-+*\/]/g);
+		console.log(numArr, operators);
+		let recurse = (n, l, o)=>{
 
+		}
+		// var res = recurse(numArr, 0, operators);
 	}
 
 	render() {
@@ -56,7 +64,7 @@ class App extends Component {
 			{ value: '1', label: '1', class: '', click: this.addToStr },
 			{ value: '2', label: '2', class: '', click: this.addToStr },
 			{ value: '3', label: '3', class: '', click: this.addToStr },
-			{ value: '=', label: '=', class: 'grid2xrow', click: this.clearValue },
+			{ value: '=', label: '=', class: 'grid2xrow', click: this.calculatevalue },
 			{ value: '0', label: '0', class: 'grid2xcol', click: this.addToStr },
 			{ value: '.', label: '.', class: '', click: this.addToStr },
 		];
