@@ -5,38 +5,66 @@ class App extends Component {
 		super(props);
 		this.state = {
 			output: '0',
+			calcStr: '',
 		}
+
+		var self = this;
+		[
+			'addToStr',
+			'clearValue',
+			'delete',
+			'calculatevalue',
+
+		].map((v) => {
+			self[v] = self[v].bind(self);
+		});
 	}
+
+	addToStr(val) {
+		var { calcStr } = this.state
+		this.setState({ calcStr: calcStr + val });
+	}
+
+	delete() {
+
+	}
+
+	clearValue() {
+
+	}
+
+	calculatevalue() {
+
+	}
+
 	render() {
-		let { output } = this.state;
+		let { output, calcStr } = this.state;
 
 		var btnArr = [
-			{ value: 'C', label: 'C', class: '', click: '' },
-			{ value: '<-', label: '<-', class: '', click: '' },
-			{ value: '/', label: '/', class: '', click: '' },
-			{ value: '*', label: '*', class: '', click: '' },
-			{ value: '7', label: '7', class: '', click: '' },
-			{ value: '8', label: '8', class: '', click: '' },
-			{ value: '9', label: '9', class: '', click: '' },
-			{ value: '-', label: '-', class: '', click: '' },
-			{ value: '4', label: '4', class: '', click: '' },
-			{ value: '5', label: '5', class: '', click: '' },
-			{ value: '6', label: '6', class: '', click: '' },
-			{ value: '+', label: '+', class: '', click: '' },
-			{ value: '1', label: '1', class: '', click: '' },
-			{ value: '2', label: '2', class: '', click: '' },
-			{ value: '3', label: '3', class: '', click: '' },
-			{ value: '=', label: '=', class: 'grid2xrow', click: '' },
-			{ value: '0', label: '0', class: 'grid2xcol', click: '' },
-			{ value: '.', label: '.', class: '', click: '' },
+			{ value: 'C', label: 'C', class: '', click: this.clearValue },
+			{ value: '<-', label: '<-', class: '', click: this.delete },
+			{ value: '/', label: '/', class: '', click: this.addToStr },
+			{ value: '*', label: '*', class: '', click: this.addToStr },
+			{ value: '7', label: '7', class: '', click: this.addToStr },
+			{ value: '8', label: '8', class: '', click: this.addToStr },
+			{ value: '9', label: '9', class: '', click: this.addToStr },
+			{ value: '-', label: '-', class: '', click: this.addToStr },
+			{ value: '4', label: '4', class: '', click: this.addToStr },
+			{ value: '5', label: '5', class: '', click: this.addToStr },
+			{ value: '6', label: '6', class: '', click: this.addToStr },
+			{ value: '+', label: '+', class: '', click: this.addToStr },
+			{ value: '1', label: '1', class: '', click: this.addToStr },
+			{ value: '2', label: '2', class: '', click: this.addToStr },
+			{ value: '3', label: '3', class: '', click: this.addToStr },
+			{ value: '=', label: '=', class: 'grid2xrow', click: this.clearValue },
+			{ value: '0', label: '0', class: 'grid2xcol', click: this.addToStr },
+			{ value: '.', label: '.', class: '', click: this.addToStr },
 		];
-		var btns = btnArr.map((val,i)=>{
-			return(
-				// <div >
-				<button key={`${val}${i}`} className={`${val.class} inputBtn`}>
-						{val.label}
-					</button>
-				// </div>
+		var btns = btnArr.map((val, i) => {
+			return (
+				<button key={`${val}${i}`} className={`${val.class} inputBtn`} onClick={() => { val.click(val.value) }}>
+					{val.label}
+				</button>
 			)
 		});
 
@@ -44,10 +72,10 @@ class App extends Component {
 			<div className='calc-box container p-2'>
 				<div className='outputBox mb-1'>
 					<div className='formula'>
-						f
+						{calcStr}
 					</div>
 					<div className='result'>
-						f
+						{output}
 					</div>
 				</div>
 				<div className='calc-grid'>
