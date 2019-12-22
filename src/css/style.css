@@ -13,6 +13,19 @@
         border-radius: 0.3em;
     }    
 }
+.calc-grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    background-color: #704F50;
+}
+
+.grid2xcol{
+    grid-column: span 2;
+}
+
+.grid2xrow{
+    grid-row: span 2;
+}
 
 .button1{
 
