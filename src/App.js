@@ -22,6 +22,15 @@ class App extends Component {
 
 	addToStr(val) {
 		var { calcStr } = this.state;
+		var lastChr = calcStr[calcStr.length - 1];
+		if (calcStr.length < 1) {
+			if (/[*\/]/.test(val)) {
+				return;
+			}
+		}
+		if (/[-+*.\/]/.test(val) && /[-+*.\/]/.test(lastChr)) {
+			calcStr = calcStr.slice(0, -1);
+		}
 		this.setState({ calcStr: calcStr + val });
 	}
 
@@ -31,18 +40,15 @@ class App extends Component {
 	}
 
 	clearValue() {
-		this.setState({ output: '0' });
+		this.setState({ output: '0', calcStr: '' });
 	}
 
 	calculatevalue() {
 		var { calcStr } = this.state;
-		let numArr = calcStr.split(/[-+*\/]/);
-		let operators = calcStr.match(/[-+*\/]/g);
-		console.log(numArr, operators);
-		let recurse = (n, l, o)=>{
-
+		var lastChr = calcStr[calcStr.length - 1];
+		if (/[-+*.\/]/.test(lastChr)) {
+			return;
 		}
-		// var res = recurse(numArr, 0, operators);
 		this.setState({ output: eval(calcStr) });
 	}
 
@@ -51,7 +57,7 @@ class App extends Component {
 
 		var btnArr = [
 			{ value: 'C', label: 'C', class: '', click: this.clearValue },
-			{ value: '<-', label: '<-', class: '', click: this.delete },
+			{ value: '←', label: '←', class: '', click: this.delete },
 			{ value: '/', label: '/', class: '', click: this.addToStr },
 			{ value: '*', label: '*', class: '', click: this.addToStr },
 			{ value: '7', label: '7', class: '', click: this.addToStr },
