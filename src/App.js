@@ -14,10 +14,31 @@ class App extends Component {
 			'clearValue',
 			'delete',
 			'calculatevalue',
-
+			'keyEvt',
 		].map((v) => {
 			self[v] = self[v].bind(self);
 		});
+	}
+
+	componentDidMount() {
+		document.addEventListener("keydown", this.keyEvt, false);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener("keydown", this.keyEvt, false);
+	}
+
+	keyEvt(e) {
+		const val = e.key;
+		if (/[-+*.\/]|[0-9]/.test(val)) {
+			this.addToStr(val);
+		}
+		if (val === 'Enter') {
+			this.calculatevalue();
+		}
+		if (val === 'Backspace') {
+			this.delete();
+		}
 	}
 
 	addToStr(val) {
