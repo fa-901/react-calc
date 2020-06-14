@@ -43,6 +43,7 @@ class App extends Component {
 
 		}
 		// var res = recurse(numArr, 0, operators);
+		this.setState({ output: eval(calcStr) });
 	}
 
 	render() {
